@@ -108,17 +108,12 @@ def stock_quote(symbol: str):
     try:
         quote = get_stock_quote(symbol)
         return jsonify(quote), 200
-    except ValueError as exc:
-        return jsonify({"error": str(exc)}), 400
+    except ValueError:
+        return jsonify({"error": f"Invalid symbol '{symbol}'."}), 400
     except StockAPIError as exc:
         logger.error("StockAPIError for %s: %s", symbol, exc)
         return (
-            jsonify(
-                {
-                    "error": f"Could not retrieve data for '{symbol}'.",
-                    "detail": str(exc),
-                }
-            ),
+            jsonify({"error": f"Could not retrieve data for '{symbol}'. Please try again later."}),
             502,
         )
 

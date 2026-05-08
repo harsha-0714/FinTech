@@ -18,6 +18,7 @@ Design goals
 
 from __future__ import annotations
 
+import random
 import re
 import logging
 from typing import Optional
@@ -231,8 +232,7 @@ def _stock_response(query: str) -> str:
             logger.error("Stock API error for %s: %s", ticker, exc)
             return (
                 f"⚠️ Could not retrieve live data for **{ticker}** right now. "
-                f"Reason: {exc}. "
-                "Please try again later or check the ticker symbol."
+                "Please try again later or verify the ticker symbol is correct."
             )
     return (
         "📊 To get a live stock quote, mention the ticker symbol in your query. "
@@ -241,7 +241,6 @@ def _stock_response(query: str) -> str:
 
 
 def _investment_response() -> str:
-    import random
     tips = random.sample(_INVESTMENT_TIPS, min(3, len(_INVESTMENT_TIPS)))
     lines = "\n".join(f"  • {t}" for t in tips)
     return (
@@ -253,7 +252,6 @@ def _investment_response() -> str:
 
 
 def _budgeting_response() -> str:
-    import random
     tips = random.sample(_BUDGETING_TIPS, min(3, len(_BUDGETING_TIPS)))
     lines = "\n".join(f"  • {t}" for t in tips)
     return (
@@ -265,7 +263,6 @@ def _budgeting_response() -> str:
 
 
 def _crypto_response() -> str:
-    import random
     tips = random.sample(_CRYPTO_TIPS, min(3, len(_CRYPTO_TIPS)))
     lines = "\n".join(f"  • {t}" for t in tips)
     return (
@@ -276,7 +273,6 @@ def _crypto_response() -> str:
 
 
 def _general_response() -> str:
-    import random
     tips = random.sample(_GENERAL_TIPS, min(2, len(_GENERAL_TIPS)))
     lines = "\n".join(f"  • {t}" for t in tips)
     return (

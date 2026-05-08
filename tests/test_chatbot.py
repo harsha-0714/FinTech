@@ -218,7 +218,7 @@ class TestGetResponse:
     def test_stock_response_api_error(self, mock_quote):
         result = get_response("What is the price of AAPL?")
         assert result["category"] == CATEGORY_STOCK
-        assert "Could not retrieve" in result["response"] or "API limit" in result["response"]
+        assert "Could not retrieve" in result["response"]
 
     @patch("chatbot.get_stock_quote", return_value=MOCK_QUOTE)
     def test_stock_response_sets_ticker(self, mock_quote):
