@@ -1,0 +1,11 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short --cov=. --cov-report=term-missing --cov-report=html"
+
+[tool.coverage.run]
+source = ["."]
+omit = ["tests/*", "setup.py", ".env*"]
+
+[tool.coverage.report]
+fail_under = 70
+show_missing = true
